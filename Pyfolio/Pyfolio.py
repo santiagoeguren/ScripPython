@@ -83,5 +83,3 @@ pf.create_simple_tear_sheet(rendimiento_cartera)
 
 
 
-
-
