@@ -13,6 +13,8 @@ import matplotlib.pyplot as plt
 # importando seaborn
 import seaborn as sns 
 
+
+
 ################################################################################
 #Analisis estadistico
 ################################################################################
@@ -229,5 +231,93 @@ ax = fig.add_axes([0, 0, 1, 1])
 # Creating plot
 bp = ax.boxplot(data)
  
+# show plot
+plt.show()
+
+
+#-------------------------------------------------------------------------------
+#Histograma sobre la distribucion
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+#Una distrubucion
+
+#Estilo
+sns.set(style='ticks')
+
+
+# parameterise our distributions
+d1 = sps.norm(0, 10)
+
+# sample values from above distributions
+y1 = d1.rvs(300)
+
+
+# create new figure with size given explicitly
+plt.figure(figsize=(10, 6))
+
+
+# add histogram showing individual components
+plt.hist(y1, 31, histtype='barstacked', density=True, alpha=0.4, edgecolor='none')
+
+
+# get X limits and fix them
+mn, mx = plt.xlim()
+plt.xlim(mn, mx)
+
+# add our distributions to figure
+x = np.linspace(mn, mx, 301)
+plt.plot(x, d1.pdf(x) * (len(y1) / len(y1)), color='C0', ls='--', label='d1')
+
+
+# finish up
+plt.legend()
+plt.ylabel('Probability density')
+sns.despine()
+
+# show plot
+plt.show()
+
+
+
+#-------------------------------------------------------------------------------
+#dos distrubucion
+
+
+
+# parameterise our distributions
+d1 = sps.norm(0, 10)
+d2 = sps.norm(60, 15)
+
+# sample values from above distributions
+y1 = d1.rvs(300)
+y2 = d2.rvs(200)
+# combine mixture
+ys = np.concatenate([y1, y2])
+
+# create new figure with size given explicitly
+plt.figure(figsize=(10, 6))
+
+# add histogram showing individual components
+plt.hist([y1, y2], 31, histtype='barstacked', density=True, alpha=0.4, edgecolor='none')
+
+# get X limits and fix them
+mn, mx = plt.xlim()
+plt.xlim(mn, mx)
+
+# add our distributions to figure
+x = np.linspace(mn, mx, 301)
+plt.plot(x, d1.pdf(x) * (len(y1) / len(ys)), color='C0', ls='--', label='d1')
+plt.plot(x, d2.pdf(x) * (len(y2) / len(ys)), color='C1', ls='--', label='d2')
+
+# estimate Kernel Density and plot
+kde = sps.gaussian_kde(ys)
+plt.plot(x, kde.pdf(x), label='KDE')
+
+# finish up
+plt.legend()
+plt.ylabel('Probability density')
+sns.despine()
+
 # show plot
 plt.show()

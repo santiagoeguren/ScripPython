@@ -10,8 +10,9 @@ py_install(packages = c("pandas", "scikit-learn"))
 #"scikit-plot
 py_install(packages = c("scikit-plot"))
 
-py_install(packages = c("matplotlib.pyplot","seaborn"))
+py_install(packages = c("matplotlib.pyplot"))
 
+py_install(packages = c("seaborn"))
 
 py_install(packages = "statsmodels")
 
