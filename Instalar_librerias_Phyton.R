@@ -4,13 +4,29 @@
 #Conecta R y Phton
 library(reticulate)
 
+
+
+
+#installar por primera 
+install_miniconda(path = miniconda_path(), update = TRUE, force = FALSE)
+
+#reinstalar
+reticulate::install_miniconda(force = TRUE)
+
+
+
+
+
+
+
+
 #Pandas y scikit-learn
 py_install(packages = c("pandas", "scikit-learn"))
 
 #"scikit-plot
 py_install(packages = c("scikit-plot"))
 
-py_install(packages = c("matplotlib.pyplot"))
+#py_install(packages = c("matplotlib.pyplot"))
 
 py_install(packages = c("seaborn"))
 
