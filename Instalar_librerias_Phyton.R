@@ -47,7 +47,9 @@ py_install(packages = c("pycaret[full]"))
 
 
 
+py_install(packages = c("statsmodels"))
 
+py_install(packages = c("pmdarima"))
 
 
 
